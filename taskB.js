@@ -1,13 +1,13 @@
 function solve(input) {
   if (input) {
-    if (typeof input === 'number' && input > 0 && input <= 10 ** 18) {
+    if (typeof input === 'string' && +input > 0 && +input <= 10 ** 18) {
       let teams = 1,
           wars1 = 0,
           wars2 = input,
           result = [];
 
-      for (let i = 1; i <= input; i++) {
-        if (wars1 < input) {
+      for (let i = 1; i <= +input; i++) {
+        if (wars1 < +input) {
           wars1 += Math.pow(2, i) / 2;
           teams *= 2;
         }
@@ -20,7 +20,7 @@ function solve(input) {
           let teams = 1,
               wars = 0;
           
-          while (wars < input) {
+          while (wars < +input) {
             wars = 0;
             teams += 2;
 
@@ -28,7 +28,7 @@ function solve(input) {
               wars += teams - i;
             }
 
-            if (wars === input) {
+            if (wars === +input) {
               result.push(teams);
             } else {
               let valueTeams = teams;
@@ -36,7 +36,7 @@ function solve(input) {
               for (let i = wars; i < input; i += valueTeams / 2) {
                 valueTeams *= 2;
 
-                if (i + valueTeams / 2 === input) {
+                if (i + valueTeams / 2 === +input) {
                   result.push(valueTeams);
                   break;
                 }
@@ -50,7 +50,7 @@ function solve(input) {
         }
       }
       
-      if (input === wars1) {
+      if (+input === wars1) {
         result.push(teams);
       }
       
@@ -64,13 +64,13 @@ function solve(input) {
   return 'No input data';
 }
 
-console.log(solve(63));
-console.log(solve(630));
-console.log(solve(636));
-console.log(solve(15));
-console.log(solve(3));
-console.log(solve(10));
-console.log(solve(12));
+console.log(solve('63'));
+console.log(solve('630'));
+console.log(solve('636'));
+console.log(solve('15'));
+console.log(solve('3'));
+console.log(solve('10'));
+console.log(solve('12'));
 
 /* const fs = require('fs')
 const input = fs.readFileSync(0, 'utf-8');
