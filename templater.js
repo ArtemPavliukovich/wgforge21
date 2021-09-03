@@ -1,15 +1,17 @@
 class Templater {
   #template = '';
-
+  
   #addToTemplate (tag, args) {
     const text = args.reduce((sum, a) => {
-      return typeof a === 'string' || a instanceof Templater ? sum + String(a) : sum;
+      return typeof a === 'string' || a instanceof Templater ? sum + String(a).trim() : sum;
     }, '');
 
     const settings = args[args.length - 1];
-
-    const params = !(typeof settings === 'object' && settings !== null) ? '' :
-      Object.entries(settings).reduce((sum, a) => sum + ` ${a[0]}=${a[1]}`, '');
+    
+    const params = !(settings?.__proto__ === Object.prototype) ? '' :
+      Object.entries(settings).reduce((sum, a) => {
+        return sum + (typeof a[1] !== 'object' ? ` ${a[0]}=${a[1]}` : '');
+      }, '');
 
     this.#template += `<${tag}${params}>${text}</${tag}>`;
     return this;
@@ -41,10 +43,11 @@ class Templater {
   }
 }
 
-const x = new Templater();
+/* const x = new Templater();
 x.div('first', {id: 5, class: 'test'}).br().span(null, 'second', {id: 40});
 x.br();
-x.p('third');
+x.div('third', ['test']);
+x.p(' fourth     ', {style: 'color:red'});
 console.log(x.toString());
 document.body.innerHTML = x.toString();
 console.log(new Templater().span().toString())
@@ -55,8 +58,8 @@ console.log(
     new Templater().p('World'),
     {id: 100}
   ).toString()
-);
+); */
 
-/* module.exports = function () {
+module.exports = function () {
   return new Templater();
-} */
+}
