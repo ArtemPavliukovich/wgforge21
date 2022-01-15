@@ -33,7 +33,3 @@ function solve(input) {
 console.log(solve('1,3,10,1,4,3,3,5,7,8,9,10'));
 console.log(solve('999,79,101,78,80,10,998,12,14,77,1000,999,102,103,105,1000'));
 console.log(solve(['1,3,10,1,4,3,3,5,7,8,9,10']));
-
-/* const fs = require('fs');
-const input = fs.readFileSync(0, 'utf-8');
-console.log(solve(input)); */
