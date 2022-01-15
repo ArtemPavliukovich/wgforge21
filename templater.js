@@ -43,7 +43,7 @@ class Templater {
   }
 }
 
-const x = new Templater();
+/* const x = new Templater();
 x.div('first', {id: 5, class: 'test'}).br().span(null, 'second', {id: 40});
 x.br();
 x.div('third', ['test']);
@@ -58,8 +58,8 @@ console.log(
     new Templater().p('World'),
     {id: 100}
   ).toString()
-);
+); */
 
-/* module.exports = function () {
+module.exports = function () {
   return new Templater();
-} */
+}
